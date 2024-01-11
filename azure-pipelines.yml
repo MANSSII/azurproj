@@ -18,7 +18,7 @@ jobs:
       containerRegistry: 'service'
       repository: 'azurproj'
       command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+      Dockerfile: 'Dockerfile'
 
 - job: RunDockerContainer
   displayName: 'Run Docker Container'
