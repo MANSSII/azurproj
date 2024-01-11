@@ -1,4 +1,8 @@
 trigger:
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    Dockerfile: '/home/mansi/azuproj'
 - master
 
 pr:
