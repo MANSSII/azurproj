@@ -1,0 +1,31 @@
+trigger:
+- main
+
+pr:
+- main
+
+pool:
+  name: 'selfpool'
+
+jobs:
+- job: BuildAndPushDockerImage
+  displayName: 'Build and Push Docker Image'
+  pool:
+   name: 'selfpool'
+  steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'service'
+      repository: 'azurproj'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+
+- job: RunDockerContainer
+  displayName: 'Run Docker Container'
+  dependsOn: BuildAndPushDockerImage
+  pool:
+   name: 'selfpool'
+  steps:
+  - script: |
+      docker run -d -p 8080:80 azurproj:$(Build.BuildId)
+    displayName: 'Run Docker Container'
