@@ -27,5 +27,5 @@ jobs:
     name: 'selfpool'
   steps:
   - script: |
-      docker run -d -p 8080:80 azurproj:$(Build.BuildId)
+      docker run -d -p 8080:80 --name azurproj_container azurproj:$(Build.BuildId)
     displayName: 'Run Docker Container'
