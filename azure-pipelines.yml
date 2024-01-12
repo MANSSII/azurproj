@@ -21,7 +21,7 @@ jobs:
       Dockerfile: '/home/mansi/azuproj/Dockerfile'  # Adjust this path to point directly to your Dockerfile
 
   - script: |
-      docker tag azurproj:$(Build.BuildId) azurproj:latest
+      docker tag azurproj:$(Build.BuildId) mb2122/azurproj:latest
     displayName: 'Tag Docker Image'
 
 - job: RunDockerContainer
@@ -31,5 +31,5 @@ jobs:
     name: 'selfpool'
   steps:
   - script: |
-      docker run -d -p 8080:80 --name azurproj_container azurproj:latest
+      docker run -d -p 8080:80 --name azurproj_container mb2122/azurproj:latest
     displayName: 'Run Docker Container'
